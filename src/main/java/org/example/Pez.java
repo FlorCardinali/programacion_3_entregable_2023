@@ -14,6 +14,12 @@ public class Pez extends Animal{
         this.tipo_de_agua = p_agua;
     }
 
+    @Override
+    public void mostrarDatos() {
+        super.mostrarDatos();
+        System.out.println("Tipo de agua: "+ this.tipo_de_agua);
+    }
+
     public String getTipo_de_agua() {
         return tipo_de_agua;
     }

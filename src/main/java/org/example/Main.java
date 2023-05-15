@@ -8,21 +8,21 @@ public class Main {
          ArrayList<Animal> animales_bajo_cuidado = new ArrayList<>();
          Scanner scan = new Scanner(System.in);
          while (opcion!=0){
+
+             opcion = -1;
              System.out.println("""
                      Bienvenido:\s
                      1- Ingresar animal a la guardería.
-                     2- Retirar animal de la guardería (le pregunta al usuario en qué
-                     posición de la lista está el animal que desea retirar)
-                     3 - Calcular cantidad de animales actualmente en la guardería
-                     (devuelve un entero con la cantidad de animales en la guardería)
-                     4 - Listar todos los animales con todos sus datos.(ver ejemplo
-                     debajo)
+                     2- Retirar animal de la guardería.
+                     3 - Cantidad de animales en la guarderia.
+                     4 - Lista con todos los animales y todos sus datos.
                      5 - Hacer saludar a todos los animales de la lista.
-                     0 - Salir (sale del programa)""");
+                     0 - Salir""");
              opcion = scan.nextInt();
+             scan.nextLine();
              switch (opcion){
                  case 1: {
-                     Agregar_animal(animales_bajo_cuidado);
+                     Agregar_animal(animales_bajo_cuidado, scan);
                      break;
                  }
                  case 2: {
@@ -46,19 +46,27 @@ public class Main {
                      break;
                  }
                  case 3: {
-                     System.out.println("se puso opcion 3");
+                     System.out.println("hay " + animales_bajo_cuidado.size() + " animales en la gaurderia");
                      break;
                  }
                  case 4: {
-                     System.out.println("se puso opcion 4");
+                     if (animales_bajo_cuidado.size()>0){
+                         for (Animal animal : animales_bajo_cuidado){
+                             animal.mostrarDatos();
+                         }
+                     }else {
+                         System.out.println("No hay animales en la guarderia");
+                     }
                      break;
                  }
                  case 5: {
-                     System.out.println("se puso opcion 5");
+                     for (Animal animal: animales_bajo_cuidado){
+                         animal.saludar();
+                     }
                      break;
                  }
-                 case 6: {
-                     System.out.println("se puso opcion 6");
+                 case 0: {
+                     opcion = 0;
                      break;
                  }
                  default: {
@@ -66,10 +74,12 @@ public class Main {
                      break;
                  }
              }
+
          }
+         scan.close();
     }
 
-    private static void Agregar_animal(ArrayList<Animal> animales) {
+    private static void Agregar_animal(ArrayList<Animal> animales, Scanner scanner) {
         int op_animal = -1;
 
         System.out.println(""" 
@@ -79,149 +89,170 @@ public class Main {
                             2 - Pez.
                             3 - Gato.
                             4 - Perro.""");
-        Scanner scanner = new Scanner(System.in);
-        Scanner scaner_atributos = new Scanner(System.in);
         op_animal = scanner.nextInt();
+        scanner.nextLine();
         switch (op_animal){
             case 1:{
                 System.out.println("Ingrese edad del Hamster: ");
-                int edad = scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int edad = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Ingrese el sexo del Hamster: (m o f)");
-                char sexo = scaner_atributos.next().charAt(0);
-                scaner_atributos.nextLine();
+                char sexo = scanner.next().charAt(0);
+                scanner.nextLine();
+                while (!(sexo == 'm' || sexo=='M' || sexo=='f'|| sexo=='F')){
+                    System.out.println("Sexo invalido");
+                    System.out.println("Ingrese el sexo del Hamster: (m o f)");
+                    sexo = scanner.next().charAt(0);
+                    scanner.nextLine();
+                }
 
                 System.out.println("Ingrese el nombre del Hamster: ");
-                String nombre = scaner_atributos.nextLine();
+                String nombre = scanner.nextLine();
 
                 System.out.println("Ingrese el nombre del dueño: ");
-                String nombre_duenio = scaner_atributos.nextLine();
+                String nombre_duenio = scanner.nextLine();
 
                 System.out.println("Ingrese la direccion del dueño: ");
-                String direccion_duenio = scaner_atributos.nextLine();
+                String direccion_duenio = scanner.nextLine();
 
                 System.out.println("Ingrese el peso del Hamster: ");
-                int peso = scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int peso = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Ingrese el documento del dueño: ");
-                int doc_duenio =  scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int doc_duenio =  scanner.nextInt();
+                scanner.nextLine();
 
                 Hamster hamster = new Hamster(edad,sexo,nombre,nombre_duenio,doc_duenio,direccion_duenio,peso);
                 animales.add(hamster);
                 int posicion = animales.indexOf(hamster);
                 hamster.setPosicion(animales);
                 System.out.println("Se agrego un hamster correctamente.");
-                scaner_atributos.close();
-                scanner.close();
+                break;
             }
             case 2: {
                 System.out.println("Ingrese edad del Pez: ");
-                int edad = scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int edad = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Ingrese el sexo del Pez: (m o f)");
-                char sexo = scaner_atributos.next().charAt(0);
-                scaner_atributos.nextLine();
+                char sexo = scanner.next().charAt(0);
+                scanner.nextLine();
+                while (!(sexo == 'm' || sexo=='M' || sexo=='f'|| sexo=='F')){
+                    System.out.println("Sexo invalido");
+                    System.out.println("Ingrese el sexo del Hamster: (m o f)");
+                    sexo = scanner.next().charAt(0);
+                    scanner.nextLine();
+                }
 
                 System.out.println("Ingrese el nombre del Pez: ");
-                String nombre = scaner_atributos.nextLine();
+                String nombre = scanner.nextLine();
 
                 System.out.println("Ingrese el nombre del dueño: ");
-                String nombre_duenio = scaner_atributos.nextLine();
+                String nombre_duenio = scanner.nextLine();
 
                 System.out.println("Ingrese la direccion del dueño: ");
-                String direccion_duenio = scaner_atributos.nextLine();
+                String direccion_duenio = scanner.nextLine();
 
                 System.out.println("Ingrese el peso del Pez: ");
-                int peso = scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int peso = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Ingrese el documento del dueño: ");
-                int doc_duenio =  scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int doc_duenio =  scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Ingrese el tipo de agua que encesita el pez: ");
-                String agua = scaner_atributos.nextLine();
+                String agua = scanner.nextLine();
 
                 Pez pez = new Pez(edad,sexo,nombre,nombre_duenio,doc_duenio,direccion_duenio,peso,agua);
                 animales.add(pez);
                 int posicion = animales.indexOf(pez);
                 pez.setPosicion(animales);
                 System.out.println("Se agrego un pez correctamente.");
-                scaner_atributos.close();
-                scanner.close();
+                break;
             }
             case 3: {
                 System.out.println("Ingrese edad del Gato: ");
-                int edad = scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int edad = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Ingrese el sexo del Gato: (m o f)");
-                char sexo = scaner_atributos.next().charAt(0);
-                scaner_atributos.nextLine();
+                char sexo = scanner.next().charAt(0);
+                scanner.nextLine();
+                while (!(sexo == 'm' || sexo=='M' || sexo=='f'|| sexo=='F')){
+                    System.out.println("Sexo invalido");
+                    System.out.println("Ingrese el sexo del Hamster: (m o f)");
+                    sexo = scanner.next().charAt(0);
+                    scanner.nextLine();
+                }
 
                 System.out.println("Ingrese el nombre del Gato: ");
-                String nombre = scaner_atributos.nextLine();
+                String nombre = scanner.nextLine();
 
                 System.out.println("Ingrese el nombre del dueño: ");
-                String nombre_duenio = scaner_atributos.nextLine();
+                String nombre_duenio = scanner.nextLine();
 
                 System.out.println("Ingrese la direccion del dueño: ");
-                String direccion_duenio = scaner_atributos.nextLine();
+                String direccion_duenio = scanner.nextLine();
 
                 System.out.println("Ingrese el peso del Gato: ");
-                int peso = scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int peso = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Ingrese el documento del dueño: ");
-                int doc_duenio =  scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int doc_duenio = scanner.nextInt();
+                scanner.nextLine();
 
                 Gato gato = new Gato(edad,sexo,nombre,nombre_duenio,doc_duenio,direccion_duenio,peso);
                 animales.add(gato);
                 int posicion = animales.indexOf(gato);
                 gato.setPosicion(animales);
                 System.out.println("Se agrego un gato correctamente.");
-                scaner_atributos.close();
-                scanner.close();
+                break;
             }
             case 4: {
                 System.out.println("Ingrese edad del Perro: ");
-                int edad = scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int edad = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Ingrese el sexo del Perro: (m o f)");
-                char sexo = scaner_atributos.next().charAt(0);
-                scaner_atributos.nextLine();
+                char sexo = scanner.next().charAt(0);
+                scanner.nextLine();
+                while (!(sexo == 'm' || sexo=='M' || sexo=='f'|| sexo=='F')){
+                    System.out.println("Sexo invalido");
+                    System.out.println("Ingrese el sexo del Hamster: (m o f)");
+                    sexo = scanner.next().charAt(0);
+                    scanner.nextLine();
+                }
 
                 System.out.println("Ingrese la raza del Perro: ");
-                String raza = scaner_atributos.nextLine();
+                String raza = scanner.nextLine();
 
                 System.out.println("Ingrese el nombre del Perro: ");
-                String nombre = scaner_atributos.nextLine();
+                String nombre = scanner.nextLine();
 
                 System.out.println("Ingrese el nombre del dueño: ");
-                String nombre_duenio = scaner_atributos.nextLine();
+                String nombre_duenio = scanner.nextLine();
 
                 System.out.println("Ingrese la direccion del dueño: ");
-                String direccion_duenio = scaner_atributos.nextLine();
+                String direccion_duenio = scanner.nextLine();
 
                 System.out.println("Ingrese el peso del Perro en gramos: ");
-                int peso = scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int peso = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Ingrese el documento del dueño: ");
-                int doc_duenio =  scaner_atributos.nextInt();
-                scaner_atributos.nextLine();
+                int doc_duenio =  scanner.nextInt();
+                scanner.nextLine();
 
                 Perro perro = new Perro(edad,raza,sexo,nombre,nombre_duenio,doc_duenio,direccion_duenio,peso);
                 animales.add(perro);
                 int posicion = animales.indexOf(perro);
                 perro.setPosicion(animales);
                 System.out.println("Se agrego un perro correctamente.");
+                break;
             }
         }
     }

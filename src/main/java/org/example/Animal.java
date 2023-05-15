@@ -14,11 +14,25 @@ public abstract class Animal {
 
     private int posicion;
 
-    public void Saludar(){
+    public void saludar(){
+        System.out.println("----------------------\n");
         System.out.println("Hola me llamo "+ this.nombre + " y además soy un " +
                 this.tipo);
     }
+    public void mostrarDatos() {
 
+        System.out.println(
+                "-------------------------" +
+                "Tipo Animal: " + this.tipo +
+                "\nNombre: " + this.nombre +
+                "\nedad: "+this.edad +
+                "\nnombre dueño: "+ this.nombre_duenio +
+                "\ndni del dueño: " +this.doc_duenio +
+                "\ndirección: " + this.direccion_duenio +
+                "\nSexo: " + this.sexo +
+                "\nPeso(grs):" + this.peso +
+                "\nPosición en la lista: " + this.posicion);
+    }
 
     //Setters
 

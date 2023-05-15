@@ -13,4 +13,10 @@ public class Perro extends Animal{
         setPeso(p_peso);
         this.raza = p_raza;
     }
+
+    @Override
+    public void mostrarDatos() {
+        super.mostrarDatos();
+        System.out.println("Raza: "+ this.raza);
+    }
 }
