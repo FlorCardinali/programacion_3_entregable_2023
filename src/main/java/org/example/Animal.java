@@ -15,14 +15,14 @@ public abstract class Animal {
     private int posicion;
 
     public void saludar(){
-        System.out.println("----------------------\n");
+        System.out.println("----------------------" + "\n");
         System.out.println("Hola me llamo "+ this.nombre + " y además soy un " +
                 this.tipo);
     }
     public void mostrarDatos() {
 
         System.out.println(
-                "-------------------------" +
+                "-------------------------\n" +
                 "Tipo Animal: " + this.tipo +
                 "\nNombre: " + this.nombre +
                 "\nedad: "+this.edad +

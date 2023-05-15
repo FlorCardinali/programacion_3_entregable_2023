@@ -26,22 +26,26 @@ public class Main {
                      break;
                  }
                  case 2: {
-                     Scanner scanner_2 = new Scanner(System.in);
-                     System.out.println("Ingrese la posicion del animal que quiere borrar: ");
-                     int indice = scanner_2.nextInt();
-                     System.out.println("Quiere eliminar a " + animales_bajo_cuidado.get(indice).getNombre() + "? (y o n)");
-                     char borrar = scanner_2.next().charAt(0);
-                     scanner_2.nextLine();
-                     if (borrar == 'y' || borrar == 'Y'){
-                         System.out.println("Se borro correctamente a "+ animales_bajo_cuidado.get(indice).getNombre() );
-                         animales_bajo_cuidado.remove(indice);
-                         for (Animal animal : animales_bajo_cuidado){
-                             animal.setPosicion(animales_bajo_cuidado);
+                     if (animales_bajo_cuidado.size()>0) {
+                         System.out.println("Ingrese la posicion del animal que quiere borrar: ");
+                         int indice = scan.nextInt();
+                         scan.nextLine();
+                         System.out.println("Quiere eliminar a " + animales_bajo_cuidado.get(indice).getNombre() + "? (y o n)");
+                         char borrar = scan.next().charAt(0);
+                         scan.nextLine();
+                         if (borrar == 'y' || borrar == 'Y') {
+                             System.out.println("Se borro correctamente a " + animales_bajo_cuidado.get(indice).getNombre());
+                             animales_bajo_cuidado.remove(indice);
+                             for (Animal animal : animales_bajo_cuidado) {
+                                 animal.setPosicion(animales_bajo_cuidado);
+                             }
+                         } else if (borrar == 'n' || borrar == 'N') {
+                             System.out.println("que bueno que no lo borro, vuelva a intentar.");
+                         } else {
+                             System.out.println("Opcion invalida.");
                          }
-                     }else if (borrar == 'n' || borrar=='N'){
-                         System.out.println("que bueno que no lo borro, vuelva a intentar.");
                      } else {
-                         System.out.println("Opcion invalida.");
+                         System.out.println("No hay animales em la guarderia");
                      }
                      break;
                  }
